@@ -5,5 +5,8 @@ using namespace std;
 
 int main()
 {
-    cout << "Hello World!\n";
+    Matrix m1(3);
+    m1.szachownica();
+    cout << m1 << endl;
+    return 0;
 }
