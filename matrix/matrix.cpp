@@ -131,6 +131,29 @@ Matrix& Matrix::operator--(int) {
 	return *this;
 }
 
+// Przeci¹¿enia opreatorów przypisania
+
+Matrix& Matrix::operator+=(int a) {
+	for (int i = 0; i < n * n; i++) {
+		macierz[i] += a;
+	}
+	return *this;
+}
+
+Matrix& Matrix::operator-=(int a) {
+	for (int i = 0; i < n * n; i++) {
+		macierz[i] -= a;
+	}
+	return *this;
+}
+
+Matrix& Matrix::operator*=(int a) {
+	for (int i = 0; i < n * n; i++) {
+		macierz[i] *= a;
+	}
+	return *this;
+}
+
 ostream& operator<<(ostream& o, Matrix& m) {
     for (int i = 0; i < m.n*m.n; i++) {
         if (i % m.n == 0) {
