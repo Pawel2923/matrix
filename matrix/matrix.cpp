@@ -20,3 +20,14 @@ Matrix::Matrix(int n, int* t) {
         }
     }
 }
+Matrix::Matrix(const Matrix& m) {
+	int** matrix = new int* [m.n];
+	for (int i = 0; i < m.n; i++) {
+		matrix[i] = new int[m.n];
+	}
+	for (int i = 0; i < m.n; i++) {
+		for (int j = 0; j < m.n; j++) {
+			matrix[i][j] = m.matrix[i][j];
+		}
+	}
+}
