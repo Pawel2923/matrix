@@ -17,5 +17,10 @@ int main()
     cout << m1 + 2 << endl;
     cout << 2 + m1 << endl;
 
+    // Sprawdzanie odejmowania
+    cout << m1 - 2 << endl;
+    cout << 2 - m1 << endl;
+
+
     return 0;
 }

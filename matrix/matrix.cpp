@@ -71,6 +71,24 @@ Matrix operator+(int a, Matrix& m) {
 	return *wynik;
 }
 
+// Przeci¹¿enia operatorów odejmowania
+
+Matrix& Matrix::operator-(int a) {
+	Matrix* wynik = new Matrix(n);
+	for (int i = 0; i < n * n; i++) {
+		wynik->macierz[i] = macierz[i] - a;
+	}
+	return *wynik;
+}
+
+Matrix operator-(int a, Matrix& m) {
+	Matrix* wynik = new Matrix(m.n);
+	for (int i = 0; i < m.n * m.n; i++) {
+		wynik->macierz[i] = a - m.macierz[i];
+	}
+	return *wynik;
+}
+
 ostream& operator<<(ostream& o, Matrix& m) {
     for (int i = 0; i < m.n*m.n; i++) {
         if (i % m.n == 0) {
