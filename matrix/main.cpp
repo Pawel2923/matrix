@@ -46,5 +46,11 @@ int main()
     m3 *= 2;
     cout << m3 << endl;
 
+    // Sprawdzanie porównań
+    cout << "Porownania:" << endl;
+    cout << (m1 == m2) << endl;
+    cout << (m1 > m2) << endl;
+    cout << (m1 < m2) << endl;
+
     return 0;
 }

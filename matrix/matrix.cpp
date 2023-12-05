@@ -171,3 +171,41 @@ Matrix::operator double() {
 	}
 	return suma;
 }
+
+// Przeci¹¿enia operatorów porównania
+
+bool Matrix::operator==(const Matrix& m) {
+	if (n != m.n) {
+		return false;
+	}
+	for (int i = 0; i < n * n; i++) {
+		if (macierz[i] != m.macierz[i]) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool Matrix::operator>(const Matrix& m) {
+	if (n != m.n) {
+		return false;
+	}
+	for (int i = 0; i < n * n; i++) {
+		if (macierz[i] <= m.macierz[i]) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool Matrix::operator<(const Matrix& m) {
+	if (n != m.n) {
+		return false;
+	}
+	for (int i = 0; i < n * n; i++) {
+		if (macierz[i] >= m.macierz[i]) {
+			return false;
+		}
+	}
+	return true;
+}
