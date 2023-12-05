@@ -17,6 +17,22 @@ Matrix::Matrix(int n) {
 	macierz = new int[n*n];
 }
 
+Matrix::Matrix(int n, int* t) {
+	this->n = n;
+	macierz = new int[n*n];
+	for (int i = 0; i < n * n; i++) {
+		macierz[i] = t[i];
+	}
+}
+
+Matrix::Matrix(Matrix& m) {
+	this->n = m.n;
+	macierz = new int[n*n];
+	for (int i = 0; i < n * n; i++) {
+		macierz[i] = m.macierz[i];
+	}
+}
+
 Matrix& Matrix::szachownica(void) {
     for (int i = 0; i < n*n; i++) {
         if (i % 2 == 0) {
@@ -29,6 +45,32 @@ Matrix& Matrix::szachownica(void) {
     return *this;
 }
 
+// Przeci¹zenia operatorów dodawania
+
+Matrix& Matrix::operator+(Matrix& m) {
+	Matrix* wynik = new Matrix(n);
+    for (int i = 0; i < n * n; i++) {
+		wynik->macierz[i] = macierz[i] + m.macierz[i];
+	}
+	return *wynik;
+}
+
+Matrix& Matrix::operator+(int a) {
+	Matrix* wynik = new Matrix(n);
+    for (int i = 0; i < n * n; i++) {
+		wynik->macierz[i] = macierz[i] + a;
+	}
+	return *wynik;
+}
+
+Matrix operator+(int a, Matrix& m) {
+	Matrix* wynik = new Matrix(m.n);
+	for (int i = 0; i < m.n * m.n; i++) {
+		wynik->macierz[i] = m.macierz[i] + a;
+	}
+	return *wynik;
+}
+
 ostream& operator<<(ostream& o, Matrix& m) {
     for (int i = 0; i < m.n*m.n; i++) {
         if (i % m.n == 0) {
@@ -37,4 +79,12 @@ ostream& operator<<(ostream& o, Matrix& m) {
         o << m.macierz[i] << " ";
     }
     return o;
+}
+
+Matrix::operator double() {
+	double suma = 0;
+	for (int i = 0; i < n * n; i++) {
+		suma += macierz[i];
+	}
+	return suma;
 }
