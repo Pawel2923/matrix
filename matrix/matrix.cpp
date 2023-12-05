@@ -31,3 +31,10 @@ Matrix::Matrix(const Matrix& m) {
 		}
 	}
 }
+
+Matrix::~Matrix() {
+	for (int i = 0; i < n; i++) {
+		delete[] matrix[i];
+	}
+	delete[] matrix;
+}
