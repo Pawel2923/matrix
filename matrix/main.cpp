@@ -21,11 +21,14 @@ int main()
     cout << m1 - 2 << endl;
     cout << 2 - m1 << endl;
 
-
     // Sprawdzanie mnożenia
     cout << m1 * m2 << endl;
     cout << m1 * 2 << endl;
     cout << 2 * m1 << endl;
+
+    // Sprawdzanie inkrementacji i dekrementacji
+    cout << m1++ << endl;
+    cout << m1-- << endl;
 
     return 0;
 }

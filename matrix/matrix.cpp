@@ -115,6 +115,22 @@ Matrix operator*(int a, Matrix& m) {
 	return *wynik;
 }
 
+// Przeci¹¿enia operatorów inkrementacji i dekrementacji
+
+Matrix& Matrix::operator++(int) {
+	for (int i = 0; i < n * n; i++) {
+		macierz[i]++;
+	}
+	return *this;
+}
+
+Matrix& Matrix::operator--(int) {
+	for (int i = 0; i < n * n; i++) {
+		macierz[i]--;
+	}
+	return *this;
+}
+
 ostream& operator<<(ostream& o, Matrix& m) {
     for (int i = 0; i < m.n*m.n; i++) {
         if (i % m.n == 0) {
