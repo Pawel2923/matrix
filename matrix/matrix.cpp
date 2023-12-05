@@ -38,3 +38,13 @@ Matrix::~Matrix() {
 	}
 	delete[] matrix;
 }
+
+Matrix::losuj(int x)
+{
+	srand(time(NULL));
+	for (int i = 0; i < x; i++) {
+		for (int j = 0; j < x; j++) {
+			matrix[i][j] = rand() % 10;
+		}
+	}
+}
