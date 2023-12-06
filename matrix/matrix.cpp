@@ -155,4 +155,23 @@ void Matrix::nad_przekatna() {
     }
 }
 
+void Matrix::dowroc() {
+    int** matrix2 = new int* [n];
+    for (int i = 0; i < n; i++) {
+        matrix2[i] = new int[n];
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            matrix2[i][j] = matrix[j][i];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
+    matrix = matrix2;
+}
 
+int Matrix::pokaz(int x, int y) {
+    return matrix[x][y];
+}
