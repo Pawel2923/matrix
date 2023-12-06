@@ -3,34 +3,180 @@
 
 using namespace std;
 
-Matrix::Matrix() {
-	this->n = 0;
-	macierz = new int[0];
+Matrix::Matrix() : n(0), matrix(nullptr) {}
+
+Matrix::Matrix(int n) : n(n) {
+    matrix = new int* [n];
+    for (int i = 0; i < n; i++) {
+        matrix[i] = new int[n];
+        for (int j = 0; j < n; j++) {
+            matrix[i][j] = 0;
+        }
+    }
+}
+
+Matrix::Matrix(int n, int* t) : n(n) {
+    matrix = new int* [n];
+    for (int i = 0; i < n; i++) {
+        matrix[i] = new int[n];
+    }
+    int k = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            matrix[i][j] = t[k];
+            k++;
+        }
+    }
+}
+
+Matrix::Matrix(const Matrix& m) : n(m.n) {
+    matrix = new int* [n];
+    for (int i = 0; i < n; i++) {
+        matrix[i] = new int[n];
+        for (int j = 0; j < n; j++) {
+            matrix[i][j] = m.matrix[i][j];
+        }
+    }
 }
 
 Matrix::~Matrix() {
-	delete[] macierz;
+    for (int i = 0; i < n; i++) {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
 }
 
-Matrix::Matrix(int n) {
-	this->n = n;
-	macierz = new int[n*n];
+Matrix& Matrix::alokuj(int n) {
+    if (matrix == nullptr) {
+        matrix = new int* [n];
+        for (int i = 0; i < n; i++) {
+            matrix[i] = new int[n];
+        }
+    }
+    else {
+        if (this->n != n) {
+            for (int i = 0; i < this->n; i++) {
+                delete[] matrix[i];
+            }
+            delete[] matrix;
+            matrix = new int* [n];
+            for (int i = 0; i < n; i++) {
+                matrix[i] = new int[n];
+            }
+        }
+    }
+    return *this;
 }
 
-Matrix::Matrix(int n, int* t) {
-	this->n = n;
-	macierz = new int[n*n];
-	for (int i = 0; i < n * n; i++) {
-		macierz[i] = t[i];
-	}
+Matrix& Matrix::wstaw(int x, int y, int wartosc) {
+    if (x >= 0 && x < n && y >= 0 && y < n) {
+        matrix[x][y] = wartosc;
+    }
+    return *this;
 }
 
-Matrix::Matrix(Matrix& m) {
-	this->n = m.n;
-	macierz = new int[n*n];
-	for (int i = 0; i < n * n; i++) {
-		macierz[i] = m.macierz[i];
-	}
+void Matrix::losuj(int x) {
+    srand(static_cast<unsigned int>(time(nullptr)));
+    for (int i = 0; i < x; i++) {
+        for (int j = 0; j < x; j++) {
+            matrix[i][j] = rand() % 10;
+        }
+    }
+}
+
+void Matrix::losuj() {
+    srand(static_cast<unsigned int>(time(nullptr)));
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            matrix[i][j] = rand() % 10;
+        }
+    }
+}
+
+void Matrix::diagonalna(int* t) {
+    int k = 0;
+    for (int i = 0; i < n; i++) {
+        matrix[i][i] = t[k];
+        k++;
+    }
+}
+
+void Matrix::diagonalna_k(int k, int* t) {
+    int l = 0;
+    for (int i = 0; i < n; i++) {
+        matrix[i][i + k] = t[l];
+        l++;
+    }
+}
+
+void Matrix::kolumna(int x, int* t) {
+    for (int i = 0; i < n; i++) {
+        matrix[i][x] = t[i];
+    }
+}
+
+void Matrix::wiersz(int y, int* t) {
+    for (int i = 0; i < n; i++) {
+        matrix[y][i] = t[i];
+    }
+}
+
+void Matrix::przekatna() {
+    for (int i = 0; i < n; i++) {
+        matrix[i][i] = 1;
+        for (int j = 0; j < n; j++) {
+            if (i != j) {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+}
+
+void Matrix::pod_przekatna() {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i > j) {
+                matrix[i][j] = 1;
+            }
+            else {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+}
+
+void Matrix::nad_przekatna() {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i < j) {
+                matrix[i][j] = 1;
+            }
+            else {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+}
+
+void Matrix::dowroc() {
+    int** matrix2 = new int* [n];
+    for (int i = 0; i < n; i++) {
+        matrix2[i] = new int[n];
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            matrix2[i][j] = matrix[j][i];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
+    matrix = matrix2;
+}
+
+int Matrix::pokaz(int x, int y) {
+    return matrix[x][y];
 }
 
 Matrix& Matrix::szachownica(void) {
@@ -45,7 +191,7 @@ Matrix& Matrix::szachownica(void) {
     return *this;
 }
 
-// Przeci¹zenia operatorów dodawania
+// Przeciï¿½zenia operatorï¿½w dodawania
 
 Matrix& Matrix::operator+(Matrix& m) {
 	Matrix* wynik = new Matrix(n);
@@ -71,7 +217,7 @@ Matrix operator+(int a, Matrix& m) {
 	return *wynik;
 }
 
-// Przeci¹¿enia operatorów odejmowania
+// Przeciï¿½ï¿½enia operatorï¿½w odejmowania
 
 Matrix& Matrix::operator-(int a) {
 	Matrix* wynik = new Matrix(n);
@@ -89,7 +235,7 @@ Matrix operator-(int a, Matrix& m) {
 	return *wynik;
 }
 
-// Przeci¹¿enia operatorów mno¿enia
+// Przeciï¿½ï¿½enia operatorï¿½w mnoï¿½enia
 
 Matrix& Matrix::operator*(Matrix& m) {
 	Matrix* wynik = new Matrix(n);
@@ -115,7 +261,7 @@ Matrix operator*(int a, Matrix& m) {
 	return *wynik;
 }
 
-// Przeci¹¿enia operatorów inkrementacji i dekrementacji
+// Przeciï¿½ï¿½enia operatorï¿½w inkrementacji i dekrementacji
 
 Matrix& Matrix::operator++(int) {
 	for (int i = 0; i < n * n; i++) {
@@ -131,7 +277,7 @@ Matrix& Matrix::operator--(int) {
 	return *this;
 }
 
-// Przeci¹¿enia opreatorów przypisania
+// Przeciï¿½ï¿½enia opreatorï¿½w przypisania
 
 Matrix& Matrix::operator+=(int a) {
 	for (int i = 0; i < n * n; i++) {
@@ -172,7 +318,7 @@ Matrix::operator double() {
 	return suma;
 }
 
-// Przeci¹¿enia operatorów porównania
+// Przeciï¿½ï¿½enia operatorï¿½w porï¿½wnania
 
 bool Matrix::operator==(const Matrix& m) {
 	if (n != m.n) {
