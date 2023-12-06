@@ -81,3 +81,13 @@ void Matrix::losuj(int x) {
     }
 }
 
+void Matrix::losuj() {
+    srand(static_cast<unsigned int>(time(nullptr)));
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            matrix[i][j] = rand() % 10;
+        }
+    }
+}
+
+
