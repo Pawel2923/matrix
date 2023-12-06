@@ -21,8 +21,13 @@ Matrix::Matrix(int n, int* t) : n(n) {
     int k = 0;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            matrix[i][j] = t[k];
-            k++;
+            if (k < n * n) {
+                matrix[i][j] = t[k];
+                k++;
+            }
+            else {
+                matrix[i][j] = 0;
+            }
         }
     }
 }
@@ -38,9 +43,6 @@ Matrix::Matrix(Matrix& m) : n(m.n) {
 }
 
 Matrix::~Matrix() {
-    for (int i = 0; i < n; i++) {
-        delete[] matrix[i];
-    }
     delete[] matrix;
 }
 
@@ -63,6 +65,7 @@ Matrix& Matrix::alokuj(int n) {
             }
         }
     }
+    this->n = n;
     return *this;
 }
 
@@ -74,12 +77,23 @@ Matrix& Matrix::wstaw(int x, int y, int wartosc) {
 }
 
 Matrix& Matrix::losuj(int x) {
+    // Losowanie cyfr od 0 do 9
+    int* randNum = new int[x];
     srand(static_cast<unsigned int>(time(nullptr)));
     for (int i = 0; i < x; i++) {
-        for (int j = 0; j < x; j++) {
-            matrix[i][j] = rand() % 10;
-        }
+        randNum[i] = rand() % 10;
     }
+
+    // Wstawianie liczb do macierzy w losowych miejscach
+    int k = 0;
+    int* randX = new int[x];
+    int* randY = new int[x];
+    for (int i = 0; i < x; i++) {
+		randX[i] = rand() % n;
+		randY[i] = rand() % n;
+		matrix[randX[i]][randY[i]] = randNum[k];
+		k++;
+	}
 
     return *this;
 }
