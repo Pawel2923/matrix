@@ -4,6 +4,8 @@
 
 class Matrix {
 private:
+	int n;
+	int** matrix;
 
 public:
 	Matrix(void);
@@ -14,7 +16,7 @@ public:
 	Matrix& alokuj(int n);
 	Matrix& wstaw(int x, int y, int wartosc);
 	int pokaz(int x, int y);
-	Matrix $dowroc(void);
+	Matrix &dowroc(void);
 	Matrix& losuj(void);
 	Matrix& losuj(int x);
 	Matrix& diagonalna(int* t);
