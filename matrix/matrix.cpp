@@ -72,3 +72,12 @@ Matrix& Matrix::wstaw(int x, int y, int wartosc) {
     return *this;
 }
 
+void Matrix::losuj(int x) {
+    srand(static_cast<unsigned int>(time(nullptr)));
+    for (int i = 0; i < x; i++) {
+        for (int j = 0; j < x; j++) {
+            matrix[i][j] = rand() % 10;
+        }
+    }
+}
+
