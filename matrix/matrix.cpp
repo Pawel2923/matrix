@@ -129,4 +129,17 @@ void Matrix::przekatna() {
     }
 }
 
+void Matrix::pod_przekatna() {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i > j) {
+                matrix[i][j] = 1;
+            }
+            else {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+}
+
 
