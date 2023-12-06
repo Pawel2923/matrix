@@ -5,13 +5,13 @@ using namespace std;
 
 int main()
 {
-    Matrix m1(3);
+    Matrix m1(4);
     m1.szachownica();
     cout << m1 << endl;
 
     // Sprawdzenie dodawania
     cout << "Dodawanie:" << endl;
-    Matrix m2(3);
+    Matrix m2(4);
     m2.szachownica();
     cout << m2 << endl;
     cout << m1 + m2 << endl;
@@ -36,7 +36,7 @@ int main()
 
     // Sprawdzanie przypisania
     cout << "Przypisanie:" << endl;
-    Matrix m3(3);
+    Matrix m3(4);
     m3.szachownica();
     cout << m3 << endl;
     m3 += 2;
