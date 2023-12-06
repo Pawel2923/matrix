@@ -118,3 +118,15 @@ void Matrix::wiersz(int y, int* t) {
     }
 }
 
+void Matrix::przekatna() {
+    for (int i = 0; i < n; i++) {
+        matrix[i][i] = 1;
+        for (int j = 0; j < n; j++) {
+            if (i != j) {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+}
+
+
