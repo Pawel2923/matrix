@@ -27,25 +27,24 @@ public:
 	Matrix& pod_przekatna(void);
 	Matrix& nad_przekatna(void);
 	Matrix& szachownica(void);
-	Matrix& operator+(matrix& m);
-	Matrix& operator*(matrix& m);
+	Matrix& operator+(Matrix& m);
+	Matrix& operator*(Matrix& m);
 	Matrix& operator+(int a);
 	Matrix& operator*(int a);
 	Matrix& operator-(int a);
-	friend Matrix operator+(int a, matrix& m);
-	friend Matrix operator*(int a, matrix& m);
-	friend Matrix operator-(int a, matrix& m);
+	friend Matrix operator+(int a, Matrix& m);
+	friend Matrix operator*(int a, Matrix& m);
+	friend Matrix operator-(int a, Matrix& m);
 	Matrix& operator++(int);
 	Matrix& operator--(int);
 	Matrix& operator+=(int a);
 	Matrix& operator-=(int a);
 	Matrix& operator*=(int a);
-	Matrix& operator(double);
-	friend ostream& operator<<(ostream& o, Matrix& m);
+	operator double();
+	friend std::ostream& operator<<(std::ostream& o, Matrix& m);
 	bool operator==(const Matrix& m);
 	bool operator>(const Matrix& m);
 	bool operator<(const Matrix& m);
-
 };
 
 #endif // !MATRIX_H
