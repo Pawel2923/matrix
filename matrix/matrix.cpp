@@ -90,4 +90,19 @@ void Matrix::losuj() {
     }
 }
 
+void Matrix::diagonalna(int* t) {
+    int k = 0;
+    for (int i = 0; i < n; i++) {
+        matrix[i][i] = t[k];
+        k++;
+    }
+}
+
+void Matrix::diagonalna_k(int k, int* t) {
+    int l = 0;
+    for (int i = 0; i < n; i++) {
+        matrix[i][i + k] = t[l];
+        l++;
+    }
+}
 
