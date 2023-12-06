@@ -106,3 +106,15 @@ void Matrix::diagonalna_k(int k, int* t) {
     }
 }
 
+void Matrix::kolumna(int x, int* t) {
+    for (int i = 0; i < n; i++) {
+        matrix[i][x] = t[i];
+    }
+}
+
+void Matrix::wiersz(int y, int* t) {
+    for (int i = 0; i < n; i++) {
+        matrix[y][i] = t[i];
+    }
+}
+
