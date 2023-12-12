@@ -14,11 +14,10 @@ int main()
     // Sprawdzenie konstruktora z parametrem
     cout << "Konstruktor z parametrem:" << endl;
     Matrix m1(4);
-    m1.szachownica();
     cout << m1 << endl;
 
     // Sprawdzenie konstruktora z dwoma parametrami
-    cout << "Konstruktor z dwoma parametrami:" << endl;
+    cout << "Konstruktor z tablica:" << endl;
     int t[4] = { 1, 2, 3, 4 };
     Matrix m2(4, t);
     cout << m2 << endl;
