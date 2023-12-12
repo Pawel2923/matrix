@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "matrix.h"
 
 Matrix::Matrix() : n(0), matrix(nullptr) {}
@@ -410,4 +412,45 @@ bool Matrix::operator<(const Matrix& m) {
 		}
 	}
 	return suma1 < suma2;
+}
+
+// Funkcja zwracajaca wielkosc macierzy w pliku
+
+int getNumberOfLines(std::string filename) {
+    std::fstream file;
+    file.open(filename, std::ios::in);
+
+    int n = 0;
+
+    while (!file.eof())
+    {
+        std::string line;
+        getline(file, line);
+        n++;
+    }
+
+    file.close();
+
+    return n;
+}
+
+// Wczytywanie macierzy z pliku tekstowego
+
+Matrix& Matrix::wczytajZTxt(std::string nazwa_pliku) {
+	std::ifstream plik(nazwa_pliku);
+    if (plik.is_open()) {
+	    n = getNumberOfLines(nazwa_pliku);
+	    matrix = new int* [n];
+        for (int i = 0; i < n; i++) {
+		    matrix[i] = new int[n];
+            for (int j = 0; j < n; j++) {
+			    plik >> matrix[i][j];
+		    }
+	    }
+	}
+        else {
+		std::cout << "Nie udalo sie otworzyc pliku" << std::endl;
+	}
+	plik.close();
+	return *this;
 }
