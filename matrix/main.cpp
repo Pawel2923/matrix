@@ -17,12 +17,23 @@ int main()
     m1.szachownica();
     cout << m1 << endl;
 
+    // Sprawdzenie konstruktora z dwoma parametrami
+    cout << "Konstruktor z dwoma parametrami:" << endl;
+    int t[4] = { 1, 2, 3, 4 };
+    Matrix m2(4, t);
+    cout << m2 << endl;
+
+    // Sprawdzenie konstruktora kopiującego
+    cout << "Konstruktor kopiujacy:" << endl;
+    Matrix copy(m1);
+    cout << copy << endl;
+
     // Sprawdzenie alokacji
     cout << "Alokacja:" << endl;
-    Matrix m2;
-    m2.alokuj(4);
-    m2.szachownica();
-    cout << m2 << endl;
+    Matrix alo;
+    alo.alokuj(4);
+    alo.szachownica();
+    cout << alo << endl;
 
     // Sprawdzenie wstawiania
     cout << "Wstawianie:" << endl;
@@ -31,14 +42,17 @@ int main()
     cout << m3 << endl;
 
     // Sprawdzenie pokazywania
-    cout << "Pokazywanie:" << endl;
+    cout << "Pokazywanie elementu po wspolrzednych:" << endl;
     cout << m3.pokaz(1, 1) << endl;
+
+    cout << endl;
 
     // Sprawdzenie odwracania
     cout << "Odwracanie:" << endl;
-    Matrix m4(4);
-    m4.szachownica();
+    Matrix m4("a.txt");
+    cout << "Oryginalna macierz:" << endl;
     cout << m4 << endl;
+    cout << "Odwrocona macierz:" << endl;
     cout << m4.dowroc() << endl;
 
     // Sprawdzenie losowania
@@ -46,13 +60,14 @@ int main()
     Matrix m5(4);
     m5.losuj();
     cout << m5 << endl;
+    cout << "Losowanie z zakresu:" << endl;
     m5.losuj(5);
     cout << m5 << endl;
 
     // Sprawdzenie tworzenia macierzy diagonalnej
     cout << "Macierz diagonalna:" << endl;
     Matrix m6(4);
-    int t[4] = { 1, 2, 3, 4 };
+    int t1[4] = { 1, 2, 3, 4 };
     m6.diagonalna(t);
     cout << m6 << endl;
 
@@ -96,63 +111,94 @@ int main()
     cout << m12 << endl;
 
     // Sprawdzenie tworzenia macierzy szachownicy
+    cout << "Macierz szachownica:" << endl;
     Matrix m13(4);
     m13.szachownica();
     cout << m13 << endl;
 
     // Sprawdzenie dodawania
     cout << "Dodawanie:" << endl;
-    Matrix m14(4);
-    m14.szachownica();
-    cout << m14 << endl;
-    cout << m13 + m14 << endl;
-    cout << m13 + 2 << endl;
-    cout << 2 + m13 << endl;
+    cout << "Matrix + Matrix:" << endl;
+    Matrix macierzA("a.txt");
+    cout << "A: " << endl << macierzA << endl;
+    Matrix macierzB("b.txt");
+    cout << "B: " << endl << macierzB << endl;
+    cout << "A + B: " << endl << macierzA + macierzB << endl;
+    cout << "A + int:" << endl;
+    cout << macierzA + 2 << endl;
+    cout << "int + A:" << endl;
+    cout << 2 + macierzB << endl;
 
     // Sprawdzanie odejmowania
     cout << "Odejmowanie:" << endl;
-    cout << m13 - 2 << endl;
-    cout << 2 - m13 << endl;
+    cout << "A:" << endl << macierzA << endl;
+    cout << "A - int:" << endl;
+    cout << macierzA - 2 << endl;
+    cout << "int - A:" << endl;
+    cout << 2 - macierzA << endl;
 
     // Sprawdzanie mnożenia
+    Matrix m14("a.txt");
     cout << "Mnozenie:" << endl;
-    cout << m13 * m14 << endl;
-    cout << m13 * 2 << endl;
-    cout << 2 * m13 << endl;
+    cout << "A:" << endl << macierzA << endl;
+    cout << "A * A:" << endl;
+    cout << macierzA * macierzA << endl;
+    cout << "A * int:" << endl;
+    cout << macierzA * 2 << endl;
+    cout << "int * A:" << endl;
+    cout << 2 * macierzA << endl;
 
     // Sprawdzanie inkrementacji i dekrementacji
     cout << "Inkrementacja i dekrementacja:" << endl;
+    cout << "A:" << endl << m13 << endl;
+    cout << "A++:" << endl;
     cout << m13++ << endl;
+    cout << "A--:" << endl;
     cout << m13-- << endl;
 
     // Sprawdzanie przypisania
     cout << "Przypisanie:" << endl;
     Matrix m15(4);
     m15.szachownica();
-    cout << m15 << endl;
+    cout << "A:" << endl << m15 << endl;
+    cout << "A += 2:" << endl;
     m15 += 2;
     cout << m15 << endl;
+    cout << "A -= 1:" << endl;
     m15 -= 1;
     cout << m15 << endl;
+    cout << "A *= 2:" << endl;
     m15 *= 2;
     cout << m15 << endl;
 
     // Sprawdzenie operatora funkcyjnego
     Matrix m16(m13);
     cout << "Operator funkcyjny:" << endl;
+    cout << "A:" << endl << m16 << endl;
+    cout << "A(4.53):" << endl;
     cout << m16(4.53) << endl;
 
     // Sprawdzanie porównań
     cout << "Porownania:" << endl;
+    cout << "A:" << endl << m13 << endl;
+    cout << "B:" << endl << m14 << endl;
+    cout << "A == B:" << endl;
     cout << (m13 == m14) << endl;
+    cout << "A > B:" << endl;
     cout << (m13 > m14) << endl;
+    cout << "A < B:" << endl;
     cout << (m13 < m14) << endl;
 
+    cout << endl;
     // Sprawdzenie wczytywania z pliku
-    cout << "Wczytywanie z pliku:" << endl;
     Matrix m17;
     m17.wczytajZTxt("matrix.txt");
+    cout << "Wczytywanie z pliku matrix.txt:" << endl;
     cout << m17 << endl;
+    cout << "Wczytywanie z nieistniejacego pliku:" << endl;
+    Matrix m18;
+    m18.wczytajZTxt("matrix1.txt");
+    cout << m18 << endl;
 
     return 0;
 }
