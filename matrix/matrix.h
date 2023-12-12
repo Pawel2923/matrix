@@ -12,6 +12,7 @@ public:
 	Matrix(int n);
 	Matrix(int n, int* t);
 	Matrix(Matrix& m);
+	Matrix(std::string nazwa_pliku);
 	~Matrix(void);
 	Matrix& alokuj(int n);
 	Matrix& wstaw(int x, int y, int wartosc);

@@ -44,6 +44,11 @@ Matrix::Matrix(Matrix& m) : n(m.n) {
     }
 }
 
+Matrix::Matrix(std::string nazwa_pliku)
+{
+    wczytajZTxt(nazwa_pliku);
+}
+
 Matrix::~Matrix() {
     delete[] matrix;
 }
