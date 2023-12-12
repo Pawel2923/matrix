@@ -45,6 +45,7 @@ public:
 	bool operator==(const Matrix& m);
 	bool operator>(const Matrix& m);
 	bool operator<(const Matrix& m);
+	Matrix& wczytajZTxt(std::string nazwa_pliku);
 };
 
 #endif // !MATRIX_H
