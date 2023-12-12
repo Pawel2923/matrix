@@ -15,21 +15,13 @@ Matrix::Matrix(int n) : n(n) {
     }
 }
 
-Matrix::Matrix(int n, int* t) : n(n) {
-    matrix = new int* [n];
-    for (int i = 0; i < n; i++) {
-        matrix[i] = new int[n];
-    }
-    int k = 0;
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            if (k < n * n) {
-                matrix[i][j] = t[k];
-                k++;
-            }
-            else {
-                matrix[i][j] = 0;
-            }
+Matrix::Matrix(int n, int* t) {
+    this->n = n;
+    this->matrix = new int* [n];
+    for (int i = 0; i < n; ++i) {
+        this->matrix[i] = new int[n];
+        for (int j = 0; j < n; ++j) {
+            this->matrix[i][j] = t[j];
         }
     }
 }
@@ -42,6 +34,11 @@ Matrix::Matrix(Matrix& m) : n(m.n) {
             matrix[i][j] = m.matrix[i][j];
         }
     }
+}
+
+Matrix::Matrix(std::string nazwa_pliku)
+{
+    wczytajZTxt(nazwa_pliku);
 }
 
 Matrix::~Matrix() {
