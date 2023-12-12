@@ -137,11 +137,22 @@ int main()
     m15 *= 2;
     cout << m15 << endl;
 
+    // Sprawdzenie operatora funkcyjnego
+    Matrix m16(m13);
+    cout << "Operator funkcyjny:" << endl;
+    cout << m16(4.53) << endl;
+
     // Sprawdzanie porównań
     cout << "Porownania:" << endl;
     cout << (m13 == m14) << endl;
     cout << (m13 > m14) << endl;
     cout << (m13 < m14) << endl;
+
+    // Sprawdzenie wczytywania z pliku
+    cout << "Wczytywanie z pliku:" << endl;
+    Matrix m17;
+    m17.wczytajZTxt("matrix.txt");
+    cout << m17 << endl;
 
     return 0;
 }
