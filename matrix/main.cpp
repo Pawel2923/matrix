@@ -148,5 +148,11 @@ int main()
     cout << (m13 > m14) << endl;
     cout << (m13 < m14) << endl;
 
+    // Sprawdzenie wczytywania z pliku
+    cout << "Wczytywanie z pliku:" << endl;
+    Matrix m17;
+    m17.wczytajZTxt("matrix.txt");
+    cout << m17 << endl;
+
     return 0;
 }
